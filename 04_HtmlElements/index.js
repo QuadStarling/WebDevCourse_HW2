@@ -8,11 +8,13 @@ let txt1;
 let txt2;
 let btn;
 let lblRes;
+let ddlOp;
 function pageLoaded() {
     txt1 = document.getElementById('txt1');
     txt2 = document.querySelector('#txt2');
     btn = document.getElementById('btnCalc');
     lblRes = document.getElementById('lblRes');
+    ddlOp = document.getElementById('ddlOp');
     btn.addEventListener('click', () => {
         calculate();
     });
@@ -27,11 +29,15 @@ function calculate() {
     let txt2Text = txt2.value;
     let num2 = parseInt(txt2Text);
 
-    let res = num1 + num2;
+    let op = ddlOp.value;
+    let res;
+
+    if (op === "+") res = num1 + num2;
+    else if (op === "-") res = num1 - num2;
+    else if (op === "*") res = num1 * num2;
+    else if (op === "/") res = num1 / num2;
+
     lblRes.innerText = res;
-
-
-
 }
 
 
