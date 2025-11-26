@@ -16,10 +16,30 @@ function pageLoaded() {
     lblRes = document.getElementById('lblRes');
     ddlOp = document.getElementById('ddlOp');
     btn.addEventListener('click', () => {
-        calculate();
+        const valid1 = validateInput(txt1);
+        const valid2 = validateInput(txt2);
+
+        if (valid1 && valid2) {
+            calculate();
+        } else {
+            print("Invalid input! Please enter numbers.", true);
+            lblRes.innerText = "";
+        }
     });
+}
 
+function validateInput(inputElement) {
+    const value = inputElement.value;
 
+    if (!isNaN(value) && value.trim() !== "") {
+        inputElement.classList.add("is-valid");
+        inputElement.classList.remove("is-invalid");
+        return true;
+    } else {
+        inputElement.classList.add("is-invalid");
+        inputElement.classList.remove("is-valid");
+        return false;
+    }
 }
 
 function calculate() {
