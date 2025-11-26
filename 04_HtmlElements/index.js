@@ -38,6 +38,8 @@ function calculate() {
     else if (op === "/") res = num1 / num2;
 
     lblRes.innerText = res;
+    print(`${num1} ${op} ${num2} = ${res}`, true);
+
 }
 
 
@@ -56,14 +58,21 @@ btn2.addEventListener("click", () => {
 // {
 
 // }
-function print(msg) {
-
+function print(msg, append = false) {
     //--Get TextArea Element Reference
     const ta = document.getElementById("output");
-    //--Write msg to textArea text
-    if (ta) ta.value = msg;
-    //write Log
-    else console.log(msg);
+    if (!ta) {
+        console.log(msg);
+        return;
+    }
+
+    if (append) {
+        // Add message on a new line at the bottom
+        ta.value += (ta.value ? "\n" : "") + msg;
+    } else {
+        // Replace all text
+        ta.value = msg;
+    }
 }
 
 
